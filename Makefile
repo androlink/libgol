@@ -25,6 +25,7 @@ SRCS += gol_update.c
 SRCS += util_bzero.c
 SRCS += gol_expend.c
 SRCS += gol_print.c
+SRCS += gol_destruct.c
 
 SFILES = $(SRCS:%=$(SDIR)/%)
 
