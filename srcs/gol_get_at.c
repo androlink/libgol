@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 21:40:16 by gcros             #+#    #+#             */
-/*   Updated: 2025/03/14 16:41:34 by gcros            ###   ########.fr       */
+/*   Updated: 2025/03/18 16:54:46 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	gol_get_at(t_gol *gol, size_t x, size_t y)
 {
-	return (gol->data[y * gol->width + x]);
+	return (gol->cells[y * gol->width + x].value);
 }
 
 int	gol_get_at_s(t_gol *gol, size_t x, size_t y)

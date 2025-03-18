@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 21:25:13 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/22 21:53:05 by gcros            ###   ########.fr       */
+/*   Updated: 2025/03/18 16:49:24 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ t_gol	*gol_init(size_t width, size_t height)
 	gol = malloc(sizeof(*gol));
 	if (gol == NULL)
 		return (NULL);
-	gol->data = malloc(width * height * sizeof(*gol->data));
-	if (gol->data == NULL)
+	gol->cells = malloc(width * height * sizeof(*gol->cells));
+	if (gol->cells == NULL)
 		return (free(gol), NULL);
-	utils_bzero(gol->data, width * height * sizeof(*gol->data));
+	utils_bzero(gol->cells, width * height * sizeof(*gol->cells));
 	gol->width = width;
 	gol->height = height;
 	return (gol);

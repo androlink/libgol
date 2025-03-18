@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 21:19:36 by gcros             #+#    #+#             */
-/*   Updated: 2025/03/14 16:54:11 by gcros            ###   ########.fr       */
+/*   Updated: 2025/03/18 16:48:58 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,16 @@
 # include <stddef.h>
 
 typedef struct s_gol	t_gol;
+typedef struct s_cell	t_cell;
+struct s_cell
+{
+	int value;
+	int count;
+};
 
 struct s_gol
 {
-	int		*data;
+	t_cell *cells;
 	size_t	width;
 	size_t	height;
 };

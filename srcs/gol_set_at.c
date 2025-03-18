@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 21:30:48 by gcros             #+#    #+#             */
-/*   Updated: 2025/03/14 16:39:16 by gcros            ###   ########.fr       */
+/*   Updated: 2025/03/18 16:55:01 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	gol_set_at(t_gol *gol, size_t x, size_t y, int value)
 {
-	gol->data[y * gol->width + x] = value;
+	gol->cells[y * gol->width + x].value = value;
 }
 
 void	gol_set_at_s(t_gol *gol, size_t x, size_t y, int value)

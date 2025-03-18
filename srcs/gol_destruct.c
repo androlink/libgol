@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 17:58:00 by gcros             #+#    #+#             */
-/*   Updated: 2024/09/23 17:58:54 by gcros            ###   ########.fr       */
+/*   Updated: 2025/03/18 16:55:47 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 void	gol_destruct(t_gol *gol)
 {
-	free(gol->data);
+	free(gol->cells);
 	free(gol);
 }

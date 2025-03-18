@@ -6,31 +6,26 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 21:53:14 by gcros             #+#    #+#             */
-/*   Updated: 2025/03/14 17:49:15 by gcros            ###   ########.fr       */
+/*   Updated: 2025/03/18 17:05:05 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "gol.h"
 #include <stdlib.h>
 
-static void	get_value(t_gol *gol ,int *count);
-static void	apply_value(t_gol *gol, int *count);
+static void	get_value(t_gol *gol);
+static void	apply_value(t_gol *gol);
 long	util_min(long n1, long n2);
 long	util_max(long n1, long n2);
 
 int	gol_update(t_gol *gol)
 {
-	int *const	count = malloc(sizeof(int) * gol->height * gol->width);
-
-	if (count == NULL)
-		return (1);
-	get_value(gol, count);
-	apply_value(gol, count);
-	free(count);
+	get_value(gol);
+	apply_value(gol);
 	return (0);
 }
 
-static void	get_value(t_gol *gol, int *count)
+static void	get_value(t_gol *gol)
 {
 	size_t	i;
 	size_t	j;
@@ -41,17 +36,18 @@ static void	get_value(t_gol *gol, int *count)
 		i = 0;
 		while (i < gol->width)
 		{
-			count[j * gol->width + i] = gol_weight(gol, i, j);
+			gol->cells[j * gol->width + i].count = gol_weight(gol, i, j);
 			i++;
 		}
 		j++;
 	}
 }
 
-static void	apply_value(t_gol *gol, int *count)
+static void	apply_value(t_gol *gol)
 {
 	size_t	i;
 	size_t	j;
+	t_cell	*cell_ptr;
 
 	j = 0;
 	while (j < gol->height)
@@ -59,16 +55,16 @@ static void	apply_value(t_gol *gol, int *count)
 		i = 0;
 		while (i < gol->width)
 		{
-			if (gol_get_at(gol, i, j) != 0)
+			cell_ptr = gol->cells + j * gol->width + i;
+			if (cell_ptr->value != 0)
 			{
-				if (count[j * gol->width + i] < 2
-					|| count[j * gol->width + i] > 3)
-					gol_set_at(gol, i, j, 0);
+				if (cell_ptr->count < 2 || cell_ptr->count > 3)
+					cell_ptr->value = 0;
 			}
 			else
 			{
-				if (count[j * gol->width + i] == 3)
-					gol_set_at(gol, i, j, 1);
+				if (cell_ptr->count == 3)
+					cell_ptr->value = 1;
 			}
 			i++;
 		}
@@ -94,7 +90,7 @@ int	gol_weight(t_gol *gol, size_t x, size_t y)
 		while (i < mi)
 		{
 			if (!(i == 0 && j == 0))
-				n += gol_get_at(gol, x + i, y + j);
+				n += gol_get_at_s(gol, x + i, y + j);
 			i++;
 		}
 		j++;
