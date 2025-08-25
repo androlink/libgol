@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 21:53:14 by gcros             #+#    #+#             */
-/*   Updated: 2025/03/18 17:05:05 by gcros            ###   ########.fr       */
+/*   Updated: 2025/08/17 19:51:22 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 static void	get_value(t_gol *gol);
 static void	apply_value(t_gol *gol);
-long	util_min(long n1, long n2);
-long	util_max(long n1, long n2);
+long		util_min(long n1, long n2);
+long		util_max(long n1, long n2);
 
 int	gol_update(t_gol *gol)
 {
@@ -56,16 +56,7 @@ static void	apply_value(t_gol *gol)
 		while (i < gol->width)
 		{
 			cell_ptr = gol->cells + j * gol->width + i;
-			if (cell_ptr->value != 0)
-			{
-				if (cell_ptr->count < 2 || cell_ptr->count > 3)
-					cell_ptr->value = 0;
-			}
-			else
-			{
-				if (cell_ptr->count == 3)
-					cell_ptr->value = 1;
-			}
+			gol->rule(cell_ptr);
 			i++;
 		}
 		j++;

@@ -4,7 +4,7 @@ AR = ar -rcs
 CC = cc
 RMF = rm -f
 
-CFLAGS = -g
+CFLAGS = -g -Wall -Wextra -Werror -fsanitize=address
 DFLAGS = -MP -MMD
 
 SDIR = srcs
@@ -26,6 +26,8 @@ SRCS += util_bzero.c
 SRCS += gol_expend.c
 SRCS += gol_print.c
 SRCS += gol_destruct.c
+SRCS += gol_set_rule.c
+SRCS += min_max.c
 
 SFILES = $(SRCS:%=$(SDIR)/%)
 

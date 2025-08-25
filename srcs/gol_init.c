@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 21:25:13 by gcros             #+#    #+#             */
-/*   Updated: 2025/03/18 16:49:24 by gcros            ###   ########.fr       */
+/*   Updated: 2025/08/17 20:05:48 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ t_gol	*gol_init(size_t width, size_t height)
 	utils_bzero(gol->cells, width * height * sizeof(*gol->cells));
 	gol->width = width;
 	gol->height = height;
+	gol->rule = gol_default_rule;
 	return (gol);
 }
