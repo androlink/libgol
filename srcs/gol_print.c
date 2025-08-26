@@ -6,7 +6,7 @@
 /*   By: gcros <gcros@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 00:08:52 by gcros             #+#    #+#             */
-/*   Updated: 2025/08/25 23:10:52 by gcros            ###   ########.fr       */
+/*   Updated: 2025/08/26 13:53:38 by gcros            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	gol_print(t_gol *gol)
 	size_t				j;
 	char				*buffer;
 
-	buffer = malloc((gol->height + 1) * gol->width);
+	buffer = malloc(((gol->height) * gol->width + gol->height) * sizeof(*buffer));
 	if (buffer == NULL)
 		return ;
 	j = 0;
@@ -37,6 +37,6 @@ void	gol_print(t_gol *gol)
 		buffer[j * gol->width + i + j] = '\n';
 		j++;
 	}
-	write(1, buffer, (gol->height + 1) * gol->width);
+	write(1, buffer, (gol->height) * gol->width + gol->height);
 	free(buffer);
 }
